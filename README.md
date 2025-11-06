@@ -1,6 +1,6 @@
 # NoCode Forms — Minimal Full-stack Demo
 
-This archive contains a minimal full-stack implementation of a no-code dynamic forms app.
+This is a minimal full-stack implementation of a no-code dynamic forms app.
 
 ## Structure
 
@@ -26,9 +26,5 @@ This archive contains a minimal full-stack implementation of a no-code dynamic f
 
 The client expects the API at http://localhost:4000/api by default.
 
-## Notes
 
-This is a *minimal* demo: authentication, validations, file uploads, and production hardening are NOT included.
-
-Feel free to ask me to extend this into a fully-featured repo (drag & drop, styles, auth, deployment).
 "# No-Code" 
