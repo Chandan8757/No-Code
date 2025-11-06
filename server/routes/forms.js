@@ -4,7 +4,6 @@ const Form = require("../models/Form");
 
 const router = express.Router();
 
-
 router.post("/", async (req, res) => {
   try {
     const form = new Form({
@@ -20,8 +19,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
-// ✅ GET ALL FORMS (Admin & Public)
 router.get("/", async (req, res) => {
   try {
     const { type } = req.query;
@@ -63,7 +60,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Form.findByIdAndDelete(req.params.id);
@@ -74,7 +70,6 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting form" });
   }
 });
-
 
 router.post("/:id/duplicate", async (req, res) => {
   try {
@@ -96,7 +91,6 @@ router.post("/:id/duplicate", async (req, res) => {
   }
 });
 
-
 router.put("/:id/status", async (req, res) => {
   try {
     const form = await Form.findById(req.params.id);
@@ -110,7 +104,6 @@ router.put("/:id/status", async (req, res) => {
     res.status(500).json({ message: "Error updating form status" });
   }
 });
-
 
 router.post("/:id/responses", async (req, res) => {
   try {
@@ -130,11 +123,15 @@ router.post("/:id/responses", async (req, res) => {
   }
 });
 
-
 router.get("/:id/export", async (req, res) => {
   try {
     const form = await Form.findById(req.params.id);
     if (!form) return res.status(404).json({ message: "Form not found" });
 
     if (!form.responses || form.responses.length === 0)
-      return res.status(400).json({ message: "No responses to export" }
+      return res.status(400).json({ message: "No responses to export" });
+  } catch (err) {
+    console.error("❌ Error submitting response:", err);
+    res.status(500).json({ message: "Error submitting response" });
+  }
+});
